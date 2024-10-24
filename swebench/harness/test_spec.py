@@ -81,10 +81,10 @@ class TestSpec:
     def instance_image_key(self):
         return f"sweb.eval.{self.arch}.{self.instance_id}:latest"
 
-    def get_instance_container_name(self, run_id=None):
+    def get_instance_container_name(self, run_id=None, prediction_id=0):
         if not run_id:
             return f"sweb.eval.{self.instance_id}"
-        return f"sweb.eval.{self.instance_id}.{run_id}"
+        return f"sweb.eval.{self.instance_id}.{prediction_id}.{run_id}"
 
     @property
     def base_dockerfile(self):

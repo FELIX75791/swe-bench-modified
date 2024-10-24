@@ -489,7 +489,8 @@ def build_container(
         run_id: str,
         logger: logging.Logger,
         nocache: bool,
-        force_rebuild: bool = False
+        prediction_id: int,
+        force_rebuild: bool = False,
     ):
     """
     Builds the instance image for the given test spec and creates a container from the image.
@@ -518,7 +519,7 @@ def build_container(
         logger.info(f"Creating container for {test_spec.instance_id}...")
         container = client.containers.create(
             image=test_spec.instance_image_key,
-            name=test_spec.get_instance_container_name(run_id),
+            name=test_spec.get_instance_container_name(run_id, prediction_id),
             user=user,
             detach=True,
             command="tail -f /dev/null",
